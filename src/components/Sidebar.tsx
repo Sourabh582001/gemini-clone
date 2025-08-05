@@ -4,7 +4,6 @@ import { useChatStore } from '@/store/chatStore';
 import { useAuthStore } from '@/store/authStore';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { nanoid } from 'nanoid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faPen, faTrashCan, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { MoreVertical } from 'lucide-react';
@@ -27,7 +26,7 @@ export default function Sidebar() {
     const [editingId, setEditingId] = useState<string | null>(null);
     const [editValue, setEditValue] = useState('');
     const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
-    const [mounted, setMounted] = useState(false); // 🧠 prevent hydration mismatch
+    const [mounted, setMounted] = useState(false); // prevent hydration mismatch
 
     useEffect(() => {
         setMounted(true);

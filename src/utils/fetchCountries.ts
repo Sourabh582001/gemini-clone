@@ -1,9 +1,11 @@
-import axios from "axios";
 
-export const fetchCountries = async () => {
-  const res = await axios.get("https://restcountries.com/v3.1/all?fields=name,idd");
-  return res.data.map((c: any) => ({
-    name: c.name.common,
-    code: c.idd.root ? `${c.idd.root}${c.idd.suffixes?.[0] || ""}` : "",
-  })).filter((c: any) => c.code);
-};
+
+export async function fetchCountries(): Promise<{ name: string; code: string }[]> {
+    const res = await fetch("https://restcountries.com/v3.1/all?fields=name,idd");
+    const data: any[] = await res.json();
+
+    return data.map((country) => ({
+        name: country.name.common,
+        code: country.idd?.root + (country.idd?.suffixes?.[0] || ''),
+    }));
+}
